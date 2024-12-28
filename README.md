@@ -9,7 +9,7 @@ Ce projet utilise plusieurs modèles de machine learning pour prédire les retar
 
 2.  Objectif du Projet
 
-Le but de ce projet est de prédire le retard des vols en utilisant des modèles de machine learning classiques. Les données utilisées sont issues du dataset "US Flight Delay" qui est disponible sur Kaggle à l'url suivant : https://www.kaggle.com/datasets/usdot/flight-delays
+Le but de ce projet est de prédire le retard des vols en utilisant des modèles de machine learning classiques. Les données utilisées sont issues du dataset "US Flight Delay" qui est disponible sur Kaggle à l'url suivant : https://www.kaggle.com/datasets/usdot/flight-delays. Il faut récupérer les données contenues dans le fichier flights.csv el les mettre dans le dossier data non fourni par le GitHub. 
 
 
 
