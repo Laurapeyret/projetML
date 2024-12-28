@@ -13,7 +13,6 @@ from sklearn.metrics import classification_report, roc_auc_score, accuracy_score
 import joblib
 import warnings
 
-# Ignorer les avertissements pour une sortie plus propre
 warnings.filterwarnings('ignore')
 
 # Définir le chemin du fichier
@@ -33,7 +32,6 @@ print(df.describe())
 # Prendre un échantillon de données pour accélerer l'entraînement
 df = df.sample(n=50000, random_state=42)
 
-# Identifiez les valeurs manquantes
 print("Valeurs manquantes avant traitement :")
 print(df.isnull().sum())
 
@@ -66,7 +64,6 @@ def preprocess_data(df):
 
 df = preprocess_data(df)
 
-# Assurez-vous qu'il n'y a plus de NaN
 print("Valeurs manquantes après traitement :")
 print(df.isnull().sum())
 
@@ -77,6 +74,15 @@ plt.title('Distribution des retards')
 plt.xlabel('Retard (minutes)')
 plt.ylabel('Fréquence')
 plt.savefig('retards_distribution.png')
+plt.show()
+
+# Visualiser la heatmap des corrélations après avoir supprimé les colonnes non numériques
+numeric_cols = df.select_dtypes(include=[np.number])
+plt.figure(figsize=(12, 10))
+sns.heatmap(numeric_cols.corr(), annot=True, cmap='coolwarm')
+plt.title('Heatmap of Correlations')
+plt.savefig('correlations_heatmap.png')
+plt.show()
 
 # Division des données en ensembles d'entraînement et de test
 X = df.drop('ARRIVAL_DELAY', axis=1)
@@ -115,13 +121,6 @@ def train_and_evaluate_model(X_train, X_test, y_train, y_test):
 
 # Fonction principale
 def main():
-    # Visualiser la heatmap des corrélations après avoir supprimé les colonnes non numériques
-    numeric_cols = df.select_dtypes(include=[np.number])
-    plt.figure(figsize=(12, 10))
-    sns.heatmap(numeric_cols.corr(), annot=True, cmap='coolwarm')
-    plt.title('Heatmap of Correlations')
-    plt.savefig('correlations_heatmap.png')
-    
     results = train_and_evaluate_model(X_train, X_test, y_train, y_test)
 
 if __name__ == "__main__":
